@@ -1,10 +1,14 @@
 # Python dependencies for the DevOps Doctor Lambda backend.
 #
-# Phase 1 requires no third-party packages — the standard library (json,
-# os, logging, etc.) is sufficient and is already included in the Lambda
-# Python runtime.
+# boto3 is pre-installed in the AWS Lambda Python 3.12 runtime, so it does
+# NOT need to be bundled in the deployment package.  It is listed here solely
+# so local development environments (and CI) can install a pinned version that
+# matches what Lambda ships, preventing version-skew surprises.
 #
-# Add packages here as the project grows, one per line, pinned to an
-# exact version for reproducible deployments. Example:
-#   boto3==1.34.0
-#   requests==2.31.0
+# To install locally:
+#   pip install -r backend/requirements.txt
+#
+# Lambda runtime boto3 version reference:
+#   https://docs.aws.amazon.com/lambda/latest/dg/lambda-python.html
+
+boto3==1.38.37
