@@ -132,20 +132,21 @@ def _handle_diagnose(event: dict) -> dict:
     client = _get_bedrock_client()
 
     try:
-        response = client.converse(
-            modelId=BEDROCK_MODEL_ID,
-            system=[{"text": SYSTEM_PROMPT}],
-            messages=[
-                {
-                    "role": "user",
-                    "content": [{"text": log_text}],
-                }
+        request_payload = {
+            "messages": [
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user",   "content": log_text},
             ],
-            inferenceConfig={
-                "maxTokens": MAX_TOKENS,
-                "temperature": 0.2,   # low temperature for factual, deterministic output
-                "topP": 0.9,
-            },
+            "max_tokens": MAX_TOKENS,
+            "temperature": 0.2,   # low temperature for factual, deterministic output
+            "top_p": 0.9,
+        }
+
+        response = client.invoke_model(
+            modelId=BEDROCK_MODEL_ID,
+            body=json.dumps(request_payload),
+            contentType="application/json",
+            accept="application/json",
         )
     except ClientError as exc:
         error_code = exc.response["Error"]["Code"]
@@ -158,16 +159,13 @@ def _handle_diagnose(event: dict) -> dict:
             "error": error_msg,
         })
 
-    # Extract the assistant's text from the Converse response envelope:
-    # response["output"]["message"]["content"] is a list of content blocks.
+    # Extract the assistant's text from the invoke_model response envelope.
+    # Qwen3 32B returns an OpenAI-compatible structure:
+    # response["body"] is a streaming blob; choices[0]["message"]["content"] holds the text.
     try:
-        content_blocks = response["output"]["message"]["content"]
-        diagnosis_text = "\n".join(
-            block["text"]
-            for block in content_blocks
-            if "text" in block
-        ).strip()
-    except (KeyError, TypeError) as exc:
+        response_body = json.loads(response["body"].read())
+        diagnosis_text = response_body["choices"][0]["message"]["content"].strip()
+    except (KeyError, IndexError, TypeError) as exc:
         logger.error("Unexpected Bedrock response shape: %s", exc)
         return _json_response(502, {
             "status": "error",
