@@ -1,0 +1,5 @@
+flutter_intl:
+  enabled: true
+  arb_dir: lib/l10n
+  output_dir: lib/generated/intl
+  use_deferred_loading: false

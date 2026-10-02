@@ -1,14 +1,17 @@
 # Python dependencies for the DevOps Doctor Lambda backend.
 #
-# boto3 is pre-installed in the AWS Lambda Python 3.12 runtime, so it does
-# NOT need to be bundled in the deployment package.  It is listed here solely
-# so local development environments (and CI) can install a pinned version that
-# matches what Lambda ships, preventing version-skew surprises.
+# boto3 is pre-installed in the AWS Lambda Python 3.12 runtime and does NOT
+# need to be bundled.  It is listed here for local development parity only.
 #
-# To install locally:
-#   pip install -r backend/requirements.txt
-#
-# Lambda runtime boto3 version reference:
-#   https://docs.aws.amazon.com/lambda/latest/dg/lambda-python.html
+# openai and httpx must be bundled in the deployment package because they are
+# NOT pre-installed in the Lambda runtime.  See README.md for packaging steps.
 
 boto3==1.38.37
+
+# OpenAI Python SDK — used to call the Bedrock Mantle OpenAI-compatible endpoint.
+openai==1.82.1
+
+# httpx is required explicitly so we can pass a custom Timeout object to the
+# OpenAI client constructor.  The openai package already depends on httpx, but
+# pinning it here ensures the bundled version is consistent.
+httpx==0.28.1

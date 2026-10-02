@@ -1,0 +1,110 @@
+{
+  "@@locale": "en",
+  "@@last_modified": "2026-10-02",
+
+  "appTitle": "DevOps Doctor",
+  "@appTitle": { "description": "Application title shown in the app bar." },
+
+  "diagnoseTab": "Diagnose",
+  "@diagnoseTab": { "description": "Bottom nav label for the Diagnose screen." },
+
+  "historyTab": "History",
+  "@historyTab": { "description": "Bottom nav label for the History screen." },
+
+  "pasteLogHint": "Paste your log, error message, or stack trace here…",
+  "@pasteLogHint": { "description": "Placeholder text in the log input area." },
+
+  "uploadLogFile": "Upload Log File",
+  "@uploadLogFile": { "description": "Label for the file upload button." },
+
+  "diagnoseButton": "Diagnose",
+  "@diagnoseButton": { "description": "Label for the primary diagnose action button." },
+
+  "clearButton": "Clear",
+  "@clearButton": { "description": "Label for the clear/reset button." },
+
+  "diagnosisResult": "Diagnosis Result",
+  "@diagnosisResult": { "description": "Section heading above the diagnosis result card." },
+
+  "fieldProblem": "Problem",
+  "@fieldProblem": { "description": "Label for the problem field in the diagnosis card." },
+
+  "fieldRootCause": "Root Cause",
+  "@fieldRootCause": { "description": "Label for the root_cause field." },
+
+  "fieldEvidence": "Evidence",
+  "@fieldEvidence": { "description": "Label for the evidence field." },
+
+  "fieldExplanation": "Explanation",
+  "@fieldExplanation": { "description": "Label for the explanation field." },
+
+  "fieldRecommendedFix": "Recommended Fix",
+  "@fieldRecommendedFix": { "description": "Label for the recommended_fix field." },
+
+  "fieldKubectlCommands": "kubectl Commands",
+  "@fieldKubectlCommands": { "description": "Label for the kubectl_commands section." },
+
+  "fieldPrevention": "Prevention",
+  "@fieldPrevention": { "description": "Label for the prevention field." },
+
+  "fieldDiagnosisId": "Diagnosis ID",
+  "@fieldDiagnosisId": { "description": "Label for the diagnosis_id field in the card footer." },
+
+  "loadingDiagnosing": "Analysing with Qwen3 32B…",
+  "@loadingDiagnosing": { "description": "Shown while waiting for the diagnosis API response." },
+
+  "loadingGettingUrl": "Preparing upload…",
+  "@loadingGettingUrl": { "description": "Shown while fetching the presigned S3 URL." },
+
+  "loadingUploading": "Uploading to S3…",
+  "@loadingUploading": { "description": "Shown while PUTting the file to S3." },
+
+  "loadingHistory": "Loading history…",
+  "@loadingHistory": { "description": "Shown while the history list is loading." },
+
+  "retryButton": "Retry",
+  "@retryButton": { "description": "Label for the retry action." },
+
+  "refreshButton": "Refresh",
+  "@refreshButton": { "description": "Label for the refresh action on the history screen." },
+
+  "emptyHistory": "No diagnoses yet. Paste a log and hit Diagnose.",
+  "@emptyHistory": { "description": "Shown when the history list is empty." },
+
+  "emptyDiagnosis": "Your diagnosis will appear here.",
+  "@emptyDiagnosis": { "description": "Shown before the first diagnosis is run." },
+
+  "errorUploadFailed": "Upload failed. Please try again.",
+  "@errorUploadFailed": { "description": "Error message when S3 upload fails." },
+
+  "errorDiagnosisFailed": "Diagnosis failed. Check your connection.",
+  "@errorDiagnosisFailed": { "description": "Generic error message when diagnosis fails." },
+
+  "errorFileTooLarge": "File exceeds the 10 MB limit.",
+  "@errorFileTooLarge": { "description": "Error shown when selected file is too large." },
+
+  "errorEmptyLog": "Please paste a log or upload a file first.",
+  "@errorEmptyLog": { "description": "Validation error when the log input is empty." },
+
+  "errorHistoryFailed": "Could not load history. Tap to retry.",
+  "@errorHistoryFailed": { "description": "Error shown when history fetch fails." },
+
+  "fileSelected": "File selected: {filename}",
+  "@fileSelected": {
+    "description": "Shown below the upload button after a file is picked.",
+    "placeholders": {
+      "filename": { "type": "String", "example": "pod-crash.log" }
+    }
+  },
+
+  "diagnosedWith": "Model: {model}",
+  "@diagnosedWith": {
+    "description": "Shows which model produced the diagnosis.",
+    "placeholders": {
+      "model": { "type": "String", "example": "qwen.qwen3-32b" }
+    }
+  },
+
+  "poweredBy": "Powered by Amazon Bedrock · Qwen3 32B",
+  "@poweredBy": { "description": "Footer branding string." }
+}
